@@ -1,0 +1,11 @@
+streamlit
+requests
+numpy
+plotly
+pillow
+opencv-python-headless
+fastapi
+pydantic
+python-multipart
+scikit-image
+sqlmodel
