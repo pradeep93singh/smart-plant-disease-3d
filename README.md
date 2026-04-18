@@ -14,10 +14,7 @@
 2. [streamlit.io](https://streamlit.io/cloud) → New app → GitHub repo → `frontend_streamlit/app.py` → Deploy
 3. Public URL ready!
 
-### 2. Render.com (Backend Free Tier)
-1. [render.com](https://render.com) → New Web Service → GitHub → backend/app/main.py entrypoint.
-2. Build: `pip install -r requirements.txt`
-3. Public API URL.
+2. Render.com (Backend API - Free Tier)\n1. Go to [render.com](https://render.com) → Connect GitHub repo → New Web Service\n2. Root Directory: `backend/`\n3. Runtime: Python 3.12.3 (auto from runtime.txt)\n4. Build Command: `pip install -r requirements.txt`\n5. Start Command: `Procfile` (auto)\n6. Get public URL: https://your-app.onrender.com/docs\n\nUpdate frontend_streamlit/app.py API_URL to Render URL.
 
 ## 🐳 Docker Deploy
 ```
