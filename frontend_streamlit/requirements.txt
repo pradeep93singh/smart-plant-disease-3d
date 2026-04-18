@@ -1,0 +1,8 @@
+streamlit>=1.38.0
+plotly>=5.24.0
+pillow
+numpy
+opencv-python-headless
+requests
+python-multipart
+

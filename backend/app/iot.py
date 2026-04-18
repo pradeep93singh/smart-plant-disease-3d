@@ -1,6 +1,6 @@
 from typing import Dict, Optional
 
-from app.schemas import SensorPayload
+from .schemas import SensorPayload
 
 
 _latest_sensor_state: Optional[SensorPayload] = None

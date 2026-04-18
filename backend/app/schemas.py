@@ -12,7 +12,7 @@ class SensorPayload(BaseModel):
 
 
 class DiseaseAnalysisResponse(BaseModel):
-    plant_name: str
+    
     disease_name: str
     disease_type: str
     confidence_score: float
@@ -24,12 +24,12 @@ class DiseaseAnalysisResponse(BaseModel):
     causes: List[str]
     recommended_solution: List[str]
     prevention_tips: List[str]
+    plant_care: Optional[List[str]] = None
     urgency_level: str
     yield_risk: str
     iot_risk_flag: Optional[str] = None
     environmental_snapshot: Optional[Dict[str, float]] = None
     created_at: datetime = Field(default_factory=datetime.utcnow)
-
 
 class ScanHistoryItem(BaseModel):
     id: int

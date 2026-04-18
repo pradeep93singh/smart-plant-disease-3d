@@ -10,3 +10,5 @@ sqlmodel
 streamlit
 requests
 plotly
+torch
+torchvision

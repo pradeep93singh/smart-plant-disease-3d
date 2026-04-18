@@ -1,10 +1,10 @@
 from fastapi import FastAPI, File, HTTPException, UploadFile
 
-from app.iot import compute_environmental_risk, get_latest_sensor_state, update_sensor_state
-from app.pipeline import run_analysis
-from app.recommendations import build_recommendation
-from app.schemas import DiseaseAnalysisResponse, ScanHistoryItem, SensorPayload
-from app.storage import init_db, list_scans, save_scan
+from .iot import compute_environmental_risk, get_latest_sensor_state, update_sensor_state
+from .pipeline import run_analysis
+from .recommendations import build_recommendation
+from .schemas import DiseaseAnalysisResponse, ScanHistoryItem, SensorPayload
+from .storage import init_db, list_scans, save_scan
 
 app = FastAPI(title="Smart Plant Disease Detection and Recommendation Platform")
 
@@ -52,7 +52,7 @@ async def analyze_leaf_image(image: UploadFile = File(...)) -> DiseaseAnalysisRe
         raise HTTPException(status_code=400, detail="Uploaded image is empty.")
 
     analysis = run_analysis(image_bytes)
-    recommendation = build_recommendation(analysis["disease_name"], analysis["severity_percentage"])
+    recommendation = build_recommendation(analysis["disease_name"], analysis["severity_percentage"], analysis["plant_name"])
     sensor_state = get_latest_sensor_state()
     env_risk = compute_environmental_risk(sensor_state)
 
@@ -69,6 +69,7 @@ async def analyze_leaf_image(image: UploadFile = File(...)) -> DiseaseAnalysisRe
         causes=recommendation["causes"],
         recommended_solution=recommendation["recommended_solution"],
         prevention_tips=recommendation["prevention_tips"],
+        plant_care=recommendation.get("plant_care"),
         urgency_level=recommendation["urgency_level"],
         yield_risk=recommendation["yield_risk"],
         iot_risk_flag=env_risk["risk_flag"] if env_risk else None,
